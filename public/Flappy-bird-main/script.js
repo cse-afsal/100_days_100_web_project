@@ -266,7 +266,13 @@ const bird = {
       if (!gameOver) { playDeath(); deathShake = SHAKE_FRAMES; }
       gameOver = true;
     }
-    if (this.y - BIRD_R <= 0) { this.y = BIRD_R; this.velocity = 0; }
+    // Ceiling collision: end game when bird touches the top boundary
+    if (this.y - BIRD_R <= 0) {
+      this.y = BIRD_R;
+      this.velocity = 0;
+      if (!gameOver) { playDeath(); deathShake = SHAKE_FRAMES; }
+      gameOver = true;
+    }
   },
 
   /** @param {number} [overrideY] - optional Y override for idle bob */
